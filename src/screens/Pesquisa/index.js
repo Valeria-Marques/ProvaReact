@@ -53,7 +53,7 @@ export default class Pesquisa extends Component{
                <Text style={{color: 'green', textAlign:'center', fontSize:15, marginRight: 100, marginLeft: 100}}>{JSON.stringify(Fav)}</Text>
              <Text style={{color:'white',textAlign:'justify', fontSize: 15, textAlign:'center'}}>{JSON.stringify(Dat)}</Text>
                </View>
-               <Text style={{color:'white',marginTop:-50, fontSize: 18}}>{JSON.stringify(Decr)}</Text>
+               <Text style={{color:'white',marginTop:-10, fontSize: 18, textAlign: 'justify', width: '90%', marginLeft: 15}}>{JSON.stringify(Decr)}</Text>
                <View style={{marginTop: 50, marginLeft:20, marginRight: 20, display:'flex',flex:3, flexDirection:'row', flexWrap: 'wrap', justifyContent: 'space-between'}}>
                 <View> 
                 <Icon name="check" size={50} color="green" />

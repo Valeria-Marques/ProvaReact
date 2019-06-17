@@ -47,11 +47,13 @@ export default class Home extends Component{
         })
         .then(data => {
           this.setState({
-            data: data.results
+            data: data.results,
+            valor: "",
           })
         })
       };
      
+
     render() {
         return(
         <ScrollView>
@@ -65,7 +67,7 @@ export default class Home extends Component{
             onPressIn={this.handlePr} >
                <Text style={{color: 'white', fontSize:27, marginTop: 10, marginLeft: 40, marginBottom: 10}}>Filmes</Text>
                </TouchableOpacity>
-            <TextInput onChangeText={(valor) => this.setState({valor: valor})} placeholder="Pesquisa" placeholderTextColor='black' style={{ height: 35,  width: 120, marginTop: 10, backgroundColor: 'white', borderRadius: 90, color: 'black', marginLeft: 80, marginRight:5}}></TextInput>
+            <TextInput onChangeText={(valor) => this.setState({valor: valor})} value={this.state.valor} placeholder="Pesquisa" placeholderTextColor='black' style={{ height: 35,  width: 120, marginTop: 10, backgroundColor: 'white', borderRadius: 90, color: 'black', marginLeft: 80, marginRight:5}}></TextInput>
               <TouchableOpacity 
             onPressIn={this.handleInput} style={{marginTop:10}}>
            <Icon name="search" size={30} color="red" />
@@ -73,13 +75,12 @@ export default class Home extends Component{
             </View>
             <View style={{display:'flex',flex:1, flexDirection:'row', flexWrap: 'wrap', justifyContent: 'space-around', marginTop: -110}}>
             {
-            this.state.data.map(data => (
-            <View  style={{width: 150, borderRadius: 5, marginBottom:20, borderColor: 'rgb(23,23,23)', alignItems: 'center'}}>
-            <Image  style={{width:150, height:200}} source={{uri: `https://image.tmdb.org/t/p/w185${data.poster_path}`}} />
-            <Text style={{color: 'white', fontSize:20}}>{data.title}</Text>
+            this.state.data.map((data,index) => (
+            <View key={index}  style={{width: 150, borderRadius: 5, marginBottom:20, borderColor: 'rgb(23,23,23)', alignItems: 'center'}}>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Pesquisa', {Ima: data.poster_path, Fav: data.vote_average, Dat: data.release_date, Decr: data.overview})}>
-              <Icon name="play" size={20} color="white" />
-            </TouchableOpacity>
+            <Image  style={{width:150, height:200}} source={{uri: `https://image.tmdb.org/t/p/w185${data.poster_path}`}} />
+           </TouchableOpacity>
+            <Text style={{color: 'white', fontSize:20}}>{data.title}</Text>
             </View>
            
             ))
